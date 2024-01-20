@@ -7,6 +7,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - run: cd ${{github.workspace}}/src/odbc/rsodbc
-      - run : dir
-      - run: ./package64.bat 2.0.0 13
+      - run: |
+         cd ${{github.workspace}}/src/odbc/rsodbc
+         dir
+         ./package64.bat 2.0.0 13
