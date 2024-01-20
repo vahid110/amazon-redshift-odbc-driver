@@ -242,9 +242,6 @@
     <ClCompile Include="src\port\pgstrcasecmp.c" />
     <ClCompile Include="src\port\thread.c" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="src\interfaces\libpq\libpq.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
