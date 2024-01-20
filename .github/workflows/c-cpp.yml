@@ -1,0 +1,11 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  workflow_dispatch:
+jobs:
+  check-bats-version:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cd ${{github.workspace}}src/odbc/rsodbc
+      - run: package64.bat 2.0.0 13
