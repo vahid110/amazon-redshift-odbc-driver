@@ -8,5 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: My Build
+        shell: cmd
         working-directory: ${{github.workspace}}/src/odbc/rsodbc
         run: ./package64.bat 2.0.0 13
