@@ -11,6 +11,6 @@ jobs:
         shell: cmd
         working-directory: ${{github.workspace}}/src/odbc/rsodbc
         run: |
-          dir "C:\Program Files\"
+          dir "C:\Program Files\Microsoft Visual Studio"
           dir "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
           ./package64.bat 2.0.0 13
