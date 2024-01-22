@@ -5,6 +5,9 @@ on:
 jobs:
   check-bats-version:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        architecture: [x64]  # or [x86] for 32-bit
     steps:
       - uses: actions/checkout@v4
       - name: My Build
