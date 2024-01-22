@@ -30,7 +30,7 @@
 #include <prsht.h>
 #include  "resource.h"
 #include "version.h"
-#include <openssl/evp.h>
+//#include <openssl/evp.h>
 
 #define ODBC_INI "ODBC.INI"
 
@@ -3422,7 +3422,7 @@ char *base64Password(const unsigned char *input, int length) {
 	{
 		const int pl = 4 * ((length + 2) / 3);
 		char *output = (char *)calloc(pl + 1, 1); //+1 for the terminating null that EVP_EncodeBlock adds on
-		const int ol = EVP_EncodeBlock((unsigned char *)output, input, length);
+		const int ol = 0;//EVP_EncodeBlock((unsigned char *)output, input, length);
 		if (ol != pl)
 		{
 			//		fprintf(stderr, "Encode predicted %d but we got %d\n", pl, ol); 
@@ -3440,7 +3440,7 @@ unsigned char *decode64Password(const char *input, int length) {
 	{
 		const int pl = 3 * length / 4;
 		unsigned char *output = (unsigned char *)calloc(pl + 1, 1);
-		const int ol = EVP_DecodeBlock(output, (const unsigned char *)input, length);
+		const int ol = 0;//EVP_DecodeBlock(output, (const unsigned char *)input, length);
 		if (pl != ol)
 		{
 			//		fprintf(stderr, "Decode predicted %d but we got %d\n", pl, ol); 
