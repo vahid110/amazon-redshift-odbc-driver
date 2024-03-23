@@ -44,6 +44,7 @@ endlocal
 @PowerShell "(GC .\rsversion.h)|%%{$_ -Replace '#define STRPRODUCTVER.*', '#define STRPRODUCTVER  \"%comma_delim_w_space_version%\"'} |SC .\rsversion.h"
 echo Setting environment variables 0
 dumpbin /headers .\iam\windows\openssl\1.1\lib\libcrypto.lib
+dir .\iam\windows\openssl\1.1\lib\*
 echo Setting environment variables
 rem call vcvars64
 rem call vcvarsall x86_amd64
@@ -54,7 +55,7 @@ if errorlevel 1 goto baderrorlevel
 echo Calling rsodbc.sln
 set THISCOMMAND=devenv
 @REM devenv /Rebuild "Release|x64" rsodbc.sln
-msbuild rsodbc.sln /t:Rebuild /p:Configuration=Release /p:Platform=x64 /verbosity:detailed
+msbuild rsodbc.sln /t:Rebuild /p:Configuration=Release /p:Platform=x64
 if errorlevel 1 goto baderrorlevel
 
 echo Done building 64 bit Windows Redshift ODBC Driver
