@@ -15,8 +15,8 @@ jobs:
       - name: Install WiX
         run: dotnet tool install --global wix
 
-      - name: Build WiX on Windows
-        run: wix build .\nexus.wxs
+      # - name: Build WiX on Windows
+      #   run: wix build .\nexus.wxs
 
       - name: Checkout github repo (+ download lfs dependencies)
         uses: actions/checkout@v2
