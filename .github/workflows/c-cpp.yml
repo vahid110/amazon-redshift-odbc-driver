@@ -16,8 +16,8 @@ jobs:
 
       # - name: Install WiX
       #   run: dotnet tool install --global wix
-      - name: Install WiX Toolset
-        uses: charlesportwoodii/wix-toolset-action@v2
+      # - name: Install WiX Toolset
+      #   uses: charlesportwoodii/wix-toolset-action@v2
 
       # - name: Build WiX on Windows
       #   run: wix build .\nexus.wxs
