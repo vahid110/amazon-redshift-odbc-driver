@@ -13,6 +13,11 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
       - name: Check WIX
         run : dir "C:\Program Files (x86)\WiX Toolset v3.14\bin"
+      - name: Add WiX toolkit to PATH
+        shell: bash
+        run: |
+          echo "${WIX}bin"
+          echo "${WIX}bin" >> $GITHUB_PATH
 
       # - name: Install WiX
       #   run: dotnet tool install --global wix
