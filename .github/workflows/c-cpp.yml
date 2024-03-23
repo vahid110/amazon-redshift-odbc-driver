@@ -9,7 +9,12 @@ jobs:
       matrix:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout github repo (+ download lfs dependencies)
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
       - name: My Build
         shell: cmd
         working-directory: ${{github.workspace}}/src/odbc/rsodbc
