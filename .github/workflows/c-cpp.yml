@@ -12,7 +12,7 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
       - name: Check WIX
-        run : dir "C:\Program Files (x86)\W*"
+        run : dir "C:\Program Files (x86)\WiX Toolset v3.14\bin"
 
       # - name: Install WiX
       #   run: dotnet tool install --global wix
