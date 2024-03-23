@@ -16,7 +16,7 @@ echo Ready to Call vcvars64
 set THISCOMMAND=Call vcvars64
 echo Ready to Call vcvars64 2
 
-pushd "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build"
+pushd "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build"
 echo Ready to Call vcvars64 3
 call vcvars64.bat
 if errorlevel 1 goto baderrorlevel
