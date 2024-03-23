@@ -19,13 +19,14 @@ echo Ready to Call vcvars64 2
 pushd "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build"
 echo Ready to Call vcvars64 3
 call vcvars64.bat
+if errorlevel 1 goto baderrorlevel
 echo Ready to Call vcvars64 4
 popd
 rem call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 echo done to Call vcvars64
 rem call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
 rem call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
-if errorlevel 1 goto baderrorlevel
+
 
 set THISCOMMAND=devenv
 devenv /Rebuild "Release|x64" pgclient.sln
