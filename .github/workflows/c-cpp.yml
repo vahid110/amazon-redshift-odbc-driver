@@ -9,8 +9,8 @@ jobs:
       matrix:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
+      # - name: Add msbuild to PATH
+      #   uses: microsoft/setup-msbuild@v1.1
       - name: Check WIX
         run : dir "C:\Program Files (x86)\WiX Toolset v3.14\bin"
       - name: Add WiX toolkit to PATH
