@@ -47,9 +47,10 @@ echo Setting environment variables
 rem call vcvars64
 rem call vcvarsall x86_amd64
 set THISCOMMAND=Call vcvarsall
-call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+rem call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 if errorlevel 1 goto baderrorlevel
-
+echo Calling rsodbc.sln
 set THISCOMMAND=devenv
 devenv /Rebuild "Release|x64" rsodbc.sln
 if errorlevel 1 goto baderrorlevel
