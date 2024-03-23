@@ -42,18 +42,19 @@ endlocal
 @PowerShell "(GC .\rsversion.h)|%%{$_ -Replace '#define PRODUCTVER.*', '#define PRODUCTVER     %comma_delim_version%'} |SC .\rsversion.h"
 @PowerShell "(GC .\rsversion.h)|%%{$_ -Replace '#define STRFILEVER.*', '#define STRFILEVER     \"%comma_delim_w_space_version%\0\"'} |SC .\rsversion.h"
 @PowerShell "(GC .\rsversion.h)|%%{$_ -Replace '#define STRPRODUCTVER.*', '#define STRPRODUCTVER  \"%comma_delim_w_space_version%\"'} |SC .\rsversion.h"
-
+echo Setting environment variables 0
+dumpbin /headers .\iam\windows\openssl\1.1\lib\libcrypto.lib
 echo Setting environment variables
 rem call vcvars64
 rem call vcvarsall x86_amd64
 set THISCOMMAND=Call vcvarsall
 rem call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-rem call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+@REM rem call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 if errorlevel 1 goto baderrorlevel
 echo Calling rsodbc.sln
 set THISCOMMAND=devenv
-devenv /Rebuild "Release|x64" rsodbc.sln
-REM msbuild rsodbcsetup.sln /t:Rebuild /p:Configuration=Release /p:Platform=x64 /verbosity:detailed
+@REM devenv /Rebuild "Release|x64" rsodbc.sln
+msbuild rsodbc.sln /t:Rebuild /p:Configuration=Release /p:Platform=x64 /verbosity:detailed
 if errorlevel 1 goto baderrorlevel
 
 echo Done building 64 bit Windows Redshift ODBC Driver
