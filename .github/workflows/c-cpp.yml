@@ -42,6 +42,7 @@ jobs:
         run: |
           dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
           $env:PATH += ";D:\wix311"
+          dir "D:\wix311"
           candle.exe
           ./package64.bat 2.0.0 13
         
