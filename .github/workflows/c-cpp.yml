@@ -24,7 +24,8 @@ jobs:
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
           # echo "D:\wix311" >> $GITHUB_PATH
           # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
-          echo "D:\wix311" >> $env:GITHUB_PATH
+          # echo "D:\wix311" >> $env:GITHUB_PATH
+          Add-Content -Path $env:GITHUB_PATH -Value ";D:\wix311"
           candle
         shell: powershell
   
