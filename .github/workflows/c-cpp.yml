@@ -25,6 +25,7 @@ jobs:
           # echo "D:\wix311" >> $GITHUB_PATH
           # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
           # echo "D:\wix311" >> $env:GITHUB_PATH
+          dir "D:\wix311"
           Add-Content -Path $env:GITHUB_PATH -Value ";D:\wix311"
           candle
         shell: powershell
