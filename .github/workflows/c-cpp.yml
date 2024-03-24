@@ -27,7 +27,7 @@ jobs:
           # echo "D:\wix311" >> $env:GITHUB_PATH
           dir "D:\wix311"
           Add-Content -Path $env:GITHUB_PATH -Value ";D:\wix311"
-          candle
+          candle.exe
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
