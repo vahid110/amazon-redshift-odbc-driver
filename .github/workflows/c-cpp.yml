@@ -23,8 +23,7 @@ jobs:
           Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
           echo "D:\wix311" >> $GITHUB_PATH
-          echo "$GITHUB_PATH"
-          echo $env:GITHUB_PATH
+          candle
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
