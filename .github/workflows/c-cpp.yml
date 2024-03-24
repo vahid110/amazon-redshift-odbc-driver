@@ -17,11 +17,11 @@ jobs:
           mkdir D:\wix311
           Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
-          # echo "D:\wix311" >> $GITHUB_PATH
-          # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
-          # echo "D:\wix311" >> $env:GITHUB_PATH
           dir "D:\wix311"
-          Add-Content -Path $env:GITHUB_PATH -Value ";D:\wix311"
+          # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
+          echo "D:\wix311" >> $GITHUB_PATH
+          # echo "D:\wix311" >> $env:GITHUB_PATH
+          # Add-Content -Path $env:GITHUB_PATH -Value ";D:\wix311"
           candle.exe
         shell: powershell
   
