@@ -24,8 +24,7 @@ jobs:
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
           echo "WIX=D:\wix311" >> $GITHUB_ENV
           echo "D:\wix311" >> $GITHUB_PATH
-          dir  D:\wix311
-          echo ${{ GITHUB_PATH }}
+          Add-Content $env:GITHUB_PATH "D:\wix311"
           where candle
           where candle.exe
         shell: powershell
