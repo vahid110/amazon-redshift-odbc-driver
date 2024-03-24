@@ -1,4 +1,4 @@
-tname: learn-github-actions
+name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   workflow_dispatch:
