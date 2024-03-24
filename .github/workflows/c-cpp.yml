@@ -3,12 +3,16 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   workflow_dispatch:
 jobs:
-  check-bats-version:
+  ODBC_Build:
     runs-on: windows-latest
     strategy:
       matrix:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
       - name: Cache WiX files
         id: cache-wix
         uses: actions/cache@v2
