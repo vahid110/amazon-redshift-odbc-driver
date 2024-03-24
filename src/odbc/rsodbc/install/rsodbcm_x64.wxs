@@ -4,9 +4,6 @@
     Id="RSODBC"
     Version="$(var.VERSION)"
     Language="1033">
-    <Product>
-        <Property Id="SuppressValidation" Value="true" />
-    </Product>
 
     <Package
     
