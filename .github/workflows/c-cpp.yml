@@ -24,7 +24,7 @@ jobs:
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
           echo "D:\wix311" >> $GITHUB_PATH
           echo "$GITHUB_PATH"
-          echo $env:GITHUB_ENV
+          echo $env:GITHUB_PATH
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
