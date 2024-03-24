@@ -43,9 +43,11 @@ jobs:
         shell: cmd
         working-directory: ${{github.workspace}}/src/odbc/rsodbc
         run: |
-          dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
+          # dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
           # $env:PATH += ";D:\wix311"
           # dir "D:\wix311"
+          where candle
+          where light
           candle.exe
           ./package64.bat 2.0.0 13
         
