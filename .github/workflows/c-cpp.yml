@@ -27,11 +27,9 @@ jobs:
             mkdir D:\wix311
             Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
             Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
+          } else {
+            echo "WiX311 is already installed."
           }
-
-      - name: Add WiX directory to PATH
-        if: steps.cache-wix.outputs.cache-hit != 'true'
-        run: |
           "D:\wix311" | Out-File -FilePath $env:GITHUB_PATH -Append
 
       - name: Verify WiX installation
