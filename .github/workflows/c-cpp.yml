@@ -9,24 +9,27 @@ jobs:
       matrix:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
-      # - name: Add msbuild to PATH
-      #   uses: microsoft/setup-msbuild@v1.1
-      - name: Check WIX
-        run : dir "C:\Program Files (x86)\WiX Toolset v3.14\bin"
-      - name: Add WiX toolkit to PATH
-        shell: bash
+      # - name: Check WIX
+      #   run : dir "C:\Program Files (x86)\WiX Toolset v3.14\bin"
+      # - name: Add WiX toolkit to PATH
+      #   shell: bash
+      #   run: |
+      #     echo "${WIX}bin"
+      #     echo "${WIX}bin" >> $GITHUB_PATH
+
+      - name: Install WiX 3.11
         run: |
-          echo "${WIX}bin"
-          echo "${WIX}bin" >> $GITHUB_PATH
-
-      # - name: Install WiX
-      #   run: dotnet tool install --global wix
-      # - name: Install WiX Toolset
-      #   uses: charlesportwoodii/wix-toolset-action@v2
-
-      # - name: Build WiX on Windows
-      #   run: wix build .\nexus.wxs
-
+          mkdir C:\wix311
+          Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
+          Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
+        shell: powershell
+  
+      - name: Set WiX Environment Variables
+        run: |
+          echo "::set-env name=WIX311_PATH::D:\wix311"
+          echo "::add-path::D:\wix311"
+        shell: powershell
+  
       - name: Checkout github repo (+ download lfs dependencies)
         uses: actions/checkout@v2
         with:
@@ -41,3 +44,5 @@ jobs:
         run: |
           dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
           ./package64.bat 2.0.0 13
+        env:
+          WIX: ${{ env.WIX311_PATH }}
