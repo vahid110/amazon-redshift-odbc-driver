@@ -25,7 +25,7 @@ jobs:
           echo "WIX=D:\wix311" >> $GITHUB_ENV
           echo "D:\wix311" >> $GITHUB_PATH
           dir  D:\wix311
-          echo ${{ env.WIX }}
+          echo ${{ GITHUB_PATH }}
           where candle
           where candle.exe
         shell: powershell
