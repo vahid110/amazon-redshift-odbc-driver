@@ -25,17 +25,7 @@ jobs:
           echo "WIX=D:\wix311" >> $GITHUB_ENV
           echo "D:\wix311" >> $GITHUB_PATH
           where candle
-          IF %ERRORLEVEL% == 0 (
-            echo "candle is in the PATH"
-          ) ELSE (
-            echo "candle is not in the PATH"
-          )
           where candle.exe
-          IF %ERRORLEVEL% == 0 (
-            echo "candle.exe is in the PATH"
-          ) ELSE (
-            echo "candle.exe is not in the PATH"
-          )
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
