@@ -22,11 +22,11 @@ jobs:
 
       - name: Restore WiX files from cache or download if necessary
         run: |
-          if [[ -z "$(ls -A D:\wix311)" ]]; then
+          if ($null -eq (Get-ChildItem D:\wix311)) {
             mkdir D:\wix311
             Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
             Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
-          fi
+          }
 
       - name: Add WiX directory to PATH
         if: steps.cache-wix.outputs.cache-hit != 'true'
