@@ -9,27 +9,48 @@ jobs:
       matrix:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
-      - name: Check GITHUB_PATH
-        run: echo "FIRST:$GITHUB_PATH"
+      - name: Cache WiX files
+        id: cache-wix
+        uses: actions/cache@v2
+        with:
+          path: D:\wix311
+          key: ${{ runner.os }}-wix-${{ hashFiles('wix311-binaries.zip') }}
 
-      - name: Install WiX 3.11
+      - name: Restore WiX files from cache or download if necessary
         run: |
-          mkdir D:\wix311
-          Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
-          Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
-          dir "D:\wix311"
-          # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
-          # echo "D:\wix311" >> $GITHUB_PATH
+          if [[ -z "$(ls -A D:\wix311)" ]]; then
+            mkdir D:\wix311
+            Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
+            Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
+          fi
+
+      - name: Add WiX directory to PATH
+        if: steps.cache-wix.outputs.cache-hit != 'true'
+        run: |
           "D:\wix311" | Out-File -FilePath $env:GITHUB_PATH -Append
-          # echo "D:\wix311" >> $env:GITHUB_PATH
-          # $env:Path += ";D:\wix311"
-          # candle.exe
-        shell: powershell
+
+      - name: Verify WiX installation
+        run: candle.exe --version
         
-      - name: Check GITHUB_PATH 2
-        run: |
-          echo "NEXT:$GITHUB_PATH"
-          candle.exe
+
+      # - name: Install WiX 3.11
+      #   run: |
+      #     mkdir D:\wix311
+      #     Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
+      #     Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
+      #     dir "D:\wix311"
+      #     # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
+      #     # echo "D:\wix311" >> $GITHUB_PATH
+      #     "D:\wix311" | Out-File -FilePath $env:GITHUB_PATH -Append
+      #     # echo "D:\wix311" >> $env:GITHUB_PATH
+      #     # $env:Path += ";D:\wix311"
+      #     # candle.exe
+      #   shell: powershell
+        
+      # - name: Check GITHUB_PATH 2
+      #   run: |
+      #     echo "NEXT:$GITHUB_PATH"
+      #     candle.exe
   
       - name: Checkout Repo
         uses: actions/checkout@v2
