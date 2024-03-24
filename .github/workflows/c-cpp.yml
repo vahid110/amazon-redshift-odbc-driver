@@ -25,6 +25,7 @@ jobs:
           echo "WIX=D:\wix311" >> $GITHUB_ENV
           echo "D:\wix311" >> $GITHUB_PATH
           Add-Content $env:GITHUB_PATH "D:\wix311"
+          candle
           echo "ok0"
           where candle
           echo "ok1"
