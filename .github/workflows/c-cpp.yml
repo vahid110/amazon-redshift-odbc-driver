@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "::set-env name=WIX311_PATH::D:\wix311"
           echo "::add-path::D:\wix311"
-          echo "${=WIX311_PATH}bin" >> $GITHUB_PATH
+          echo "${WIX311_PATH}bin" >> $GITHUB_PATH
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
