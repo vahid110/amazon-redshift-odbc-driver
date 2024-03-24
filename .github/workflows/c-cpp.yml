@@ -19,14 +19,15 @@ jobs:
 
       - name: Install WiX 3.11
         run: |
-          mkdir C:\wix311
+          mkdir D:\wix311
           Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
+          echo "WIX=D:\wix311" >> $GITHUB_ENV
         shell: powershell
   
       - name: Set WiX Environment Variables
         run: |
-          echo "D:\wix311\bin" >> $GITHUB_PATH
+          echo "D:\wix311" >> $GITHUB_PATH
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
@@ -44,4 +45,4 @@ jobs:
           dir "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
           ./package64.bat 2.0.0 13
         env:
-          WIX: ${{ env.WIX311_PATH }}
+          WIX: ${{ env.WIX }}
