@@ -23,7 +23,6 @@ jobs:
           Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
           echo "D:\wix311" >> $GITHUB_PATH
-          Write-Host $env:GITHUB_ENV
           echo "hi echo $env:GITHUB_ENV"
           echo $env:GITHUB_ENV
         shell: powershell
