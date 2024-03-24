@@ -1,4 +1,4 @@
-name: learn-github-actions
+tname: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ jobs:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
       - name: Check GITHUB_PATH
-        run: echo $GITHUB_PATH
+        run: echo "FIRST:$GITHUB_PATH"
 
       - name: Install WiX 3.11
         run: |
@@ -26,7 +26,7 @@ jobs:
         shell: powershell
         
       - name: Check GITHUB_PATH 2
-        run: echo $GITHUB_PATH
+        run: echo "NEXT:$GITHUB_PATH"
   
       - name: Checkout Repo
         uses: actions/checkout@v2
