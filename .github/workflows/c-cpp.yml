@@ -22,15 +22,8 @@ jobs:
           mkdir D:\wix311
           Invoke-WebRequest -Uri 'https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip' -OutFile 'wix311-binaries.zip'
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
-          echo "WIX=D:\wix311" >> $GITHUB_ENV
           echo "D:\wix311" >> $GITHUB_PATH
-          Add-Content $env:GITHUB_PATH "D:\wix311"
-          candle
-          echo "ok0"
-          where candle
-          echo "ok1"
-          where candle.exe
-          echo "ok2"
+          Write-Host $env:GITHUB_ENV
         shell: powershell
   
       - name: Checkout github repo (+ download lfs dependencies)
