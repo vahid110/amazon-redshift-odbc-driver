@@ -9,13 +9,8 @@ jobs:
       matrix:
         architecture: [x64]  # or [x86] for 32-bit
     steps:
-      # - name: Check WIX
-      #   run : dir "C:\Program Files (x86)\WiX Toolset v3.14\bin"
-      # - name: Add WiX toolkit to PATH
-      #   shell: bash
-      #   run: |
-      #     echo "${WIX}bin"
-      #     echo "${WIX}bin" >> $GITHUB_PATH
+      - name: Check GITHUB_PATH
+        run: echo $GITHUB_PATH
 
       - name: Install WiX 3.11
         run: |
