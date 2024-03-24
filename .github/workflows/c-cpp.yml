@@ -19,14 +19,17 @@ jobs:
           Expand-Archive -Path 'wix311-binaries.zip' -DestinationPath 'D:\wix311'
           dir "D:\wix311"
           # $env:PATH += ";D:\wix311"  # Add WiX directory to PATH
-          echo "D:\wix311" >> $GITHUB_PATH
+          # echo "D:\wix311" >> $GITHUB_PATH
+          "D:\wix311" | Out-File -FilePath $env:GITHUB_PATH -Append
           # echo "D:\wix311" >> $env:GITHUB_PATH
-          $env:Path += ";D:\wix311"
-          candle.exe
+          # $env:Path += ";D:\wix311"
+          # candle.exe
         shell: powershell
         
       - name: Check GITHUB_PATH 2
-        run: echo "NEXT:$GITHUB_PATH"
+        run: |
+          echo "NEXT:$GITHUB_PATH"
+          candle.exe
   
       - name: Checkout Repo
         uses: actions/checkout@v2
