@@ -28,10 +28,10 @@ set MERGEPOLICY=%MSVCCFG%/Common Files/Merge Modules/policy_9_0_Microsoft_VC90_C
 echo.
 echo Building Amazon Redshift x64 ODBC merge module
 
-D:\wix311\candle.exe -nologo -v -dVERSION=%VERSION% rsodbcm_x64.wxs
+candle.exe -nologo -v -dVERSION=%VERSION% rsodbcm_x64.wxs
 IF ERRORLEVEL 1 GOTO ERR_HANDLER
 
-D:\wix311\light.exe -nologo -sw -out rsodbc_x64.msm rsodbcm_x64.wixobj
+light.exe -nologo -sw -out rsodbc_x64.msm rsodbcm_x64.wixobj
 IF ERRORLEVEL 1 GOTO ERR_HANDLER
 
 echo.
@@ -48,10 +48,10 @@ rem echo Help module successfully built.
 echo.
 echo Building Amazon Redshift x64 ODBC installer database...
 
-D:\wix311\candle.exe -nologo -dVERSION=%VERSION% -dMERGECRT="%MERGECRT%" -dMERGEPOLICY="%MERGEPOLICY%" rsodbc_x64.wxs
+candle.exe -nologo -dVERSION=%VERSION% -dMERGECRT="%MERGECRT%" -dMERGEPOLICY="%MERGEPOLICY%" rsodbc_x64.wxs
 IF ERRORLEVEL 1 GOTO ERR_HANDLER
 
-D:\wix311\light.exe -nologo -sw -ext WixUIExtension -cultures:en-us -out AmazonRedshiftODBC64-%VERSION%.msi rsodbc_x64.wixobj
+light.exe -nologo -sw -ext WixUIExtension -cultures:en-us -out AmazonRedshiftODBC64-%VERSION%.msi rsodbc_x64.wixobj
 IF ERRORLEVEL 1 GOTO ERR_HANDLER
 
 echo.
